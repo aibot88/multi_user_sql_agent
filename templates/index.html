@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-User SQL Agent</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Multi-User SQL Agent</h1>
+            <p>Natural language database queries with LangGraph</p>
+        </header>
+
+        <!-- Login Section -->
+        <div id="loginSection" class="section">
+            <h2>🔐 Login</h2>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+                <button onclick="login()">Login</button>
+            </div>
+        </div>
+
+        <!-- Main Application -->
+        <div id="appSection" class="section hidden">
+            <div class="user-info">
+                <span id="userWelcome"></span>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+
+            <!-- Database Setup -->
+            <div id="databaseSetup" class="section">
+                <h2>📊 Database Setup</h2>
+                <div class="setup-options">
+                    <div class="option">
+                        <h3>Option 1: Use Sample Data</h3>
+                        <p>Get started quickly with sample customer and order data</p>
+                        <button onclick="createSampleData()" id="sampleDataBtn">Create Sample Data</button>
+                    </div>
+                    <div class="option">
+                        <h3>Option 2: Upload CSV File</h3>
+                        <p>Upload your own CSV file to create a custom database</p>
+                        <input type="file" id="csvFile" accept=".csv">
+                        <button onclick="uploadCsv()" id="uploadBtn">Upload CSV</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database Info -->
+            <div id="databaseInfo" class="section hidden">
+                <h2>📋 Database Overview</h2>
+                <div id="databaseDetails"></div>
+            </div>
+
+            <!-- Chat Interface -->
+            <div id="chatSection" class="section hidden">
+                <h2>💬 Natural Language Queries</h2>
+                <div class="chat-container">
+                    <div id="chatHistory" class="chat-history"></div>
+                    <div class="chat-input">
+                        <input type="text" id="messageInput" placeholder="Ask a question about your data..." 
+                               onkeypress="handleKeyPress(event)">
+                        <button onclick="sendMessage()" id="sendBtn">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example Queries -->
+            <div id="examplesSection" class="section hidden">
+                <h2>💡 Example Queries</h2>
+                <div class="examples">
+                    <button class="example-btn" onclick="sendExampleQuery('What tables are available?')">
+                        What tables are available?
+                    </button>
+                    <button class="example-btn" onclick="sendExampleQuery('Show me sample data from each table')">
+                        Show me sample data
+                    </button>
+                    <button class="example-btn" onclick="sendExampleQuery('How many customers do I have?')">
+                        How many customers do I have?
+                    </button>
+                    <button class="example-btn" onclick="sendExampleQuery('What is the total revenue?')">
+                        What is the total revenue?
+                    </button>
+                    <button class="example-btn" onclick="sendExampleQuery('Show me the top products by sales')">
+                        Top products by sales
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Status Messages -->
+        <div id="status" class="status hidden"></div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
